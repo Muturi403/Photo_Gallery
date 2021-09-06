@@ -21,22 +21,20 @@ View photos based on the location they were taken.
 * Clone Repository:
 <https://github.com/Muturi403/Photo_Gallery.git>
 
-Install and activate Virtual Enviroment envgallery
-cd maingi-gallery && python3 -m venv envgallery && source envgallery/bin/activate
-Install Dependencies
-pip install -r requirements.txt
-Setup Database
-SetUp Database User,Password, Host then following Command
-
-python manage.py makemigrations photo
-Now Migrate
-
-python manage.py migrate
-Run Application
-python3 manage.py server
-Test Application
-python manage.py test photo
-Open the application on your browser 127.0.0.1:8000.
+* Install and activate Virtual Enviroment envgallery
+* cd photo-gallery && python3 -m venv envgallery && source envgallery/bin/activate
+* Install Dependencies
+* pip install -r requirements.txt
+* Setup Database
+* SetUp Database User,Password, Host then following Command
+* python manage.py makemigrations photo
+* Now Migrate
+* python manage.py migrate
+* Run Application
+* python3 manage.py server
+* Test Application
+* python manage.py test photo
+* Open the application on your browser 127.0.0.1:8000.
 
 ### Technology used
 
