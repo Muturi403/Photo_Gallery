@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap'); */
 
 * {
 	font-family: 'Kaisei HarunoUmi',
@@ -21,8 +21,7 @@
 	border-radius: 20px;
 }
 
-html,
-body {
+html, body {
 	min-height: 100vh;
 }
 
