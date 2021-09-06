@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 from pathlib import Path
 import os
-import django_heroku
+import django_on_heroku
 import dj_database_url
 from decouple import config,Csv
 
@@ -22,18 +22,18 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
-MODE=config("MODE", default="dev")
-DEBUG = config('DEBUG', default=False, cast=bool)
+MODE=config("MODE", default= 'dev')
+DEBUG = config('DEBUG', default=True, cast=bool)
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = '7+h@nat8yca&cca+bjtgeb1*#*r&nph5u!%)k@ou_#&+%kxw(j'
+SECRET_KEY = '7+h@nat8yca&cca+bjtgeb1*#*r&nph5u!%)k@ou_#&+%kxw(j'
 
-SECRET_KEY = config('SECRET_KEY')
+# SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 
 # Application definition
@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bootstrap3'
+    'bootstrap3',
+    'gallery',
 ]
 
 MIDDLEWARE = [
@@ -70,6 +71,7 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.template.context_processors.media',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -83,12 +85,24 @@ WSGI_APPLICATION = 'Photo_Gallery.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+if config('MODE')=='dev':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME' : config('DB_NAME'),
+            'USER': config('DB_USER'),
+            'PASSWORD': config('DB_PASSWORD'),
+            'HOST': config('DB_HOST'),
+            'PORT': '',
     }
 }
+else:
+    DATABASES = {
+        'default': dj_database_url.config(default=config('DATABASE_URL'))
+    }
+    
+DATABASES['default'].update(db_from_env)
+    
 
 
 # Password validation
@@ -135,7 +149,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
@@ -144,8 +158,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # # configuring the location for media
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # # Configure Django App for Heroku.
-# django_heroku.settings(locals())
+django_on_heroku.settings(locals())
