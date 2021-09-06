@@ -10,17 +10,15 @@ This is A Gallery Application that displays my photos for others to See. The App
 
 User Can :-
 
-View different photos that interest them
-Click a single image to expand it and view the details of that photo
-Search for different categories
-Copy a link to the photo to share with their friends.
-View photos based on the location they were taken.
+* View different photos that interest them
+* Click a single image to expand it and view the details of that photo
+* Search for different categories
+* Copy a link to the photo to share with their friends.
+* View photos based on the location they were taken.
 
 ### Requirements
 
-* Clone Repository:
-<https://github.com/Muturi403/Photo_Gallery.git>
-
+* Clone Repository: <https://github.com/Muturi403/Photo_Gallery.git>
 * Install and activate Virtual Enviroment envgallery
 * cd photo-gallery && python3 -m venv envgallery && source envgallery/bin/activate
 * Install Dependencies
