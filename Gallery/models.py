@@ -37,8 +37,8 @@ class Image(models.Model):
   image = models.ImageField(upload_to='photos')
   image_name =  models.CharField(max_length=200)
   image_desc = models.TextField()
-  location_id = models.ForeignKey(Location, on_delete=models.CASCADE, default=None)
-  category_id = models.ForeignKey(Category, on_delete=models.CASCADE, default=None)
+  location = models.ForeignKey(Location, on_delete=models.CASCADE, default=None)
+  category = models.ForeignKey(Category, on_delete=models.CASCADE, default=None)
   date_upload = models.DateTimeField(auto_now_add=True)
 
   def save_image(self):

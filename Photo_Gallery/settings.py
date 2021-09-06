@@ -26,15 +26,14 @@ MODE=config("MODE", default= 'dev')
 DEBUG = config('DEBUG', default=True, cast=bool)
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '7+h@nat8yca&cca+bjtgeb1*#*r&nph5u!%)k@ou_#&+%kxw(j'
+# SECRET_KEY = '7+h@nat8yca&cca+bjtgeb1*#*r&nph5u!%)k@ou_#&+%kxw(j'
 
-# SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = True
 
-DEBUG = True
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
-
 
 # Application definition
 
@@ -46,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap3',
-    'gallery',
+    'Gallery',
 ]
 
 MIDDLEWARE = [
@@ -100,7 +99,8 @@ else:
     DATABASES = {
         'default': dj_database_url.config(default=config('DATABASE_URL'))
     }
-    
+  
+db_from_env = dj_database_url.config(conn_max_age=500)   
 DATABASES['default'].update(db_from_env)
     
 
