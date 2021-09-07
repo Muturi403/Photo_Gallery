@@ -1,6 +1,8 @@
 #### Photo_Gallery
 
-* Author Faith Muturi
+## Author
+
+Faith Muturi
 
 ### Description
 
