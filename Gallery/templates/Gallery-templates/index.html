@@ -15,7 +15,7 @@
 
 <div class="dropdown">
   <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
-    LOCATION
+   LOCATION
   </button>
   <div class="dropdown-menu">
     {% for location in all_location %}
@@ -52,7 +52,7 @@
         </div>
         <p>{{ photo.image_desc }}</p>
         <div >
-          {% comment %} <input type="text" value='https://maingigallery.herokuapp.com{{ photo.image.url }}' class="copylink" id="trial{{photo.id}}"> {% endcomment %}
+          <input type="text" value='{{ photo.image.url }}' class="copylink" id="trial{{photo.id}}">
           <span class="btncopy" id="cpybtn{{ photo.id }}">Copy Image Link <i class="fad fa-copy text-white copyicon" style="font-size: 25px;"></i></span>
         </div>
       </div>
