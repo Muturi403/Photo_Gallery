@@ -1,0 +1,1 @@
+web: gunicorn Photo_Gallery.wsgi 
